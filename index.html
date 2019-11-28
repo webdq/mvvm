@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="school.name">
+        <hr/>
+        <p>school.name : </p>
+        <div>{{school.name}}</div>
+        <hr/>
+        <p>school.age : </p>
+        <div>{{school.age}}</div>
+        <hr/>
+        <p>多个值 : </p>
+        <div>{{school.name}} {{school.age}}</div>
+        <hr/>
+        <p>computed : </p>
+        <div>{{getNewName}}</div>
+        <hr/>
+        <p>普通标签 : </p>
+        <ul>
+            <li>1</li>
+        </ul>
+        <hr/>
+        <p>v-html : </p>
+        <div v-html="message"></div>
+        <hr/>
+        <p>v-on:click : </p>
+        <button v-on:click="change">更新操作</button>
+    </div>
+
+    <script src="watcher.js"></script>
+    <script src="observer.js"></script>
+    <script src="compile.js"></script>
+    <script src="mvvm.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                school: {
+                    name: 'CHINA_NO.1',
+                    age: 10
+                },
+                message: '<h1>hello</h1>'
+            },
+            computed: {
+                getNewName(){
+                    return '计算属性 => ' +this.school.name ;
+                }
+            },
+            methods: {
+                change(){
+                    this.school.name = 'change_name';
+                }
+            }
+        })
+    </script>
+</body>
+</html>
